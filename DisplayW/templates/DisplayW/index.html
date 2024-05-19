@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock with Temperature</title>
+    <style>
+        body {
+            background-color: blue;
+            color: white;
+            text-align: center;
+            font-family: 'Digital-7', sans-serif;
+        }
+        .container {
+            width: 300px; /* Adjust the width as needed */
+            margin: 0 auto;
+            background-color: green;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .time {
+            font-size: 48px;
+            color: red;
+        }
+        .date {
+            font-size: 24px;
+            color: red;
+        }
+        .temperature {
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="time" id="time"></div>
+        <div class="date">{{ current_date }}</div>
+        <div class="temperature">Temperature: {{ temperature }}°C</div>
+    </div>
+
+    <script>
+        // Function to update time every second
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
+            var currentTime = hours + ':' + minutes + ':' + seconds;
+            document.getElementById('time').innerText = currentTime;
+        }
+
+        // Call updateTime function initially and then every second
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
